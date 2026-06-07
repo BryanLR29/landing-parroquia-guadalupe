@@ -11,7 +11,7 @@
     /* Colores Oficiales de Redes */
     --fb-color: #1877f2;
     --ig-color: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    --wa-color: #25d366; /* Agregado el verde oficial de WhatsApp */
+    --wa-color: #25d366; /* Verde oficial de WhatsApp */
 }
 
 * {
@@ -145,24 +145,37 @@ body::after {
     font-size: 1.1rem;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.05); /* Mantiene el fondo transparente estilo cristal */
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Estilos de alineación y efectos para los logos */
+/* Estilos de alineación generales para los iconos */
 .btn i {
     font-size: 1.4rem;
     margin-right: 12px; /* Espaciado perfecto entre icono y texto */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Un brillo chiquito al icono */
+    vertical-align: middle;
 }
 
 .btn:hover, .btn:active {
     transform: translateY(-4px) scale(1.02);
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    filter: brightness(1.1); /* Hace que brille un poquito más al pasar el cursor */
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.btn-facebook { background: var(--fb-color); }
-.btn-instagram { background: var(--ig-color); }
-.btn-whatsapp { background: var(--wa-color); } /* Añadida la clase para tu botón de WhatsApp */
+/* Colores específicos de los iconos dentro de cada botón */
+.btn-facebook i { 
+    color: var(--fb-color); 
+    text-shadow: 0 0 10px rgba(24, 119, 242, 0.5);
+}
+.btn-instagram i { 
+    background: var(--ig-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.btn-whatsapp i { 
+    color: var(--wa-color); /* Aquí se fuerza el verde oficial de WhatsApp */
+    text-shadow: 0 0 10px rgba(37, 211, 102, 0.5); /* Destello verde de fondo */
+}
 
 /* QR de WhatsApp */
 .qr-container {

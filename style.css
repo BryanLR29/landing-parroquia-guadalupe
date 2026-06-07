@@ -8,8 +8,10 @@
     --text-main: #ffffff;
     --text-muted: #cbd5e1;
     
+    /* Colores Oficiales de Redes */
     --fb-color: #1877f2;
     --ig-color: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    --wa-color: #25d366; /* Agregado el verde oficial de WhatsApp */
 }
 
 * {
@@ -145,13 +147,22 @@ body::after {
     overflow: hidden;
 }
 
+/* Estilos de alineación y efectos para los logos */
+.btn i {
+    font-size: 1.4rem;
+    margin-right: 12px; /* Espaciado perfecto entre icono y texto */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Un brillo chiquito al icono */
+}
+
 .btn:hover, .btn:active {
     transform: translateY(-4px) scale(1.02);
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    filter: brightness(1.1); /* Hace que brille un poquito más al pasar el cursor */
 }
 
 .btn-facebook { background: var(--fb-color); }
 .btn-instagram { background: var(--ig-color); }
+.btn-whatsapp { background: var(--wa-color); } /* Añadida la clase para tu botón de WhatsApp */
 
 /* QR de WhatsApp */
 .qr-container {
@@ -194,7 +205,7 @@ body::after {
 }
 
 /* ==========================================================================
-   ⚡ RESPONSIVE DESIGN (Aquí es donde la magia se renderiza según la pantalla)
+    ⚡ RESPONSIVE DESIGN (Aquí es donde la magia se renderiza según la pantalla)
    ========================================================================== */
 
 /* 📱 Para Pantallas Chicas / Celulares */

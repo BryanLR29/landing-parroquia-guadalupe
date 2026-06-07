@@ -10,17 +10,25 @@ document.addEventListener('DOMContentLoaded', () => {
         body.addEventListener('mousemove', (e) => {
             let xAxis = (window.innerWidth / 2 - e.pageX) / 20;
             let yAxis = (window.innerHeight / 2 - e.pageY) / 20;
-            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            
+            // Pausamos la levitación CSS para que no choque con el giro 3D
+            card.style.animation = 'none'; 
             card.style.transition = 'none';
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
         });
 
-        // Resetear inclinación cuando el mouse sale de la pantalla
+        // Resetear inclinación cuando el mouse sale de la pantalla y reactivar levitación
         body.addEventListener('mouseleave', () => {
             card.style.transition = 'all 0.5s ease';
             card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+            
+            // Después de regresar a su lugar, reactivamos la levitación suavemente
+            setTimeout(() => {
+                card.style.animation = 'levitar 4s ease-in-out infinite alternate';
+            }, 500);
         });
     } else {
-        // 📱 Si es CELULAR, solo le damos una animación limpia de entrada
+        // 📱 Si es CELULAR, respetamos la animación limpia de entrada
         card.style.opacity = '0';
         card.style.transform = 'translateY(30px)';
         card.style.transition = 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)';

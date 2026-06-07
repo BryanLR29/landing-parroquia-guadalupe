@@ -1,0 +1,219 @@
+:root {
+    /* Colores Neón Vivos y Modernos */
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #2e1065 100%);
+    --neon-cyan: #06b6d4;
+    --neon-purple: #a855f7;
+    --card-bg: rgba(15, 23, 42, 0.55);
+    --card-border: rgba(255, 255, 255, 0.12);
+    --text-main: #ffffff;
+    --text-muted: #cbd5e1;
+    
+    --fb-color: #1877f2;
+    --ig-color: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background: var(--bg-gradient);
+    background-size: 400% 400%;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+    /* Animación fluida para que el fondo se mueva solo y no sea seco */
+    animation: moverFondo 15s ease infinite;
+}
+
+@keyframes moverFondo {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 🪐 Orbes de luz de fondo para dar profundidad */
+body::before, body::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.6;
+}
+body::before {
+    width: 300px;
+    height: 300px;
+    background: var(--neon-cyan);
+    top: 10%;
+    left: 10%;
+    animation: flotarOrbe1 8s ease-in-out infinite alternate;
+}
+body::after {
+    width: 250px;
+    height: 250px;
+    background: var(--neon-purple);
+    bottom: 10%;
+    right: 10%;
+    animation: flotarOrbe2 8s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes flotarOrbe1 { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 30px); } }
+@keyframes flotarOrbe2 { 0% { transform: translate(0, 0); } 100% { transform: translate(-40px, -40px); } }
+
+/* ⛪ Tarjeta Cristal con bordes Neón */
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    width: 100%;
+    max-width: 420px; /* Tamaño máximo para Laptops */
+    padding: 40px 30px;
+    border-radius: 32px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 
+                0 0 30px rgba(6, 182, 212, 0.15);
+    text-align: center;
+    animation: levitar 4s ease-in-out infinite alternate;
+}
+
+@keyframes levitar {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-10px); }
+}
+
+/* Icono con Brillo Intenso */
+.avatar-glow {
+    width: 90px;
+    height: 90px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--neon-cyan);
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.8rem;
+    box-shadow: 0 0 30px var(--neon-cyan);
+}
+
+.header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    background: linear-gradient(to right, #fff, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+
+/* Botones Reaccionarios */
+.social-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 16px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+}
+
+.btn:hover, .btn:active {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.btn-facebook { background: var(--fb-color); }
+.btn-instagram { background: var(--ig-color); }
+
+/* QR de WhatsApp */
+.qr-container {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+}
+
+.qr-container h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #4ade80;
+    margin-bottom: 8px;
+}
+
+.qr-sub {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.qr-link {
+    display: inline-block;
+    background: white;
+    padding: 16px;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.qr-link:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(74, 222, 128, 0.3);
+}
+
+.qr-code {
+    display: block;
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+}
+
+/* ==========================================================================
+   ⚡ RESPONSIVE DESIGN (Aquí es donde la magia se renderiza según la pantalla)
+   ========================================================================== */
+
+/* 📱 Para Pantallas Chicas / Celulares */
+@media (max-width: 480px) {
+    body { padding: 12px; }
+    .card {
+        padding: 30px 20px;
+        border-radius: 24px;
+    }
+    .header h1 { font-size: 1.7rem; }
+    .header p { font-size: 0.9rem; }
+    .btn { padding: 14px; font-size: 1rem; }
+    .qr-code { width: 150px; height: 150px; }
+}
+
+/* 📑 Para Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+    .card {
+        max-width: 380px;
+        padding: 35px 25px;
+    }
+}

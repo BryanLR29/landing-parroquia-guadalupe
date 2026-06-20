@@ -252,3 +252,10 @@ body::after {
     font-size: 0.9rem;
     color: rgba(255,255,255,0.65);
 }
+
+/* Ajustes para celular */
+@media (max-width: 480px){
+    .footer{
+        font-size: 0.75rem;
+    }
+}

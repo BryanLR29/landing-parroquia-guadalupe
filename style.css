@@ -259,3 +259,82 @@ body::after {
         font-size: 0.75rem;
     }
 }
+
+/* Lluvia de cruces */
+#cross-rain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.cross {
+    position: absolute;
+    top: -50px;
+    color: rgba(255,255,255,0.8);
+    font-size: 20px;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(-50px);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
+
+/* Pantalla de bienvenida */
+#splash-screen{
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #1e1b4b,
+        #2e1065
+    );
+    transition: opacity 1s ease;
+}
+
+.splash-content{
+    text-align: center;
+    animation: splashZoom 2s ease;
+}
+
+.splash-icon{
+    font-size: 5rem;
+    margin-bottom: 15px;
+    text-shadow:
+        0 0 15px #06b6d4,
+        0 0 35px #06b6d4;
+}
+
+.splash-content h2{
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.splash-content p{
+    color: #cbd5e1;
+}
+
+@keyframes splashZoom{
+    0%{
+        opacity: 0;
+        transform: scale(.8);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1);
+    }
+}

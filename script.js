@@ -16,34 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transition = 'all 0.5s ease';
             card.style.transform = 'rotateY(0deg) rotateX(0deg)';
         });
-    } else {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)';
-        
-        setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, 100);
     }
 });
 
 window.addEventListener('load', () => {
-
-    const splash =
-        document.getElementById('splash-screen');
-
-    setTimeout(() => {
-
-        splash.style.opacity = '0';
-
-        setTimeout(() => {
-            splash?.remove();
-            startCrossRain();
-        }, 500);
-
-    }, 1500);
-
+    startCrossRain();
+    startStarRain();
 });
 
 function startCrossRain() {
@@ -70,11 +48,24 @@ function startCrossRain() {
         rainContainer.appendChild(cross);
     }
 
-    setTimeout(() => {
-        rainContainer.style.transition = 'opacity 0.8s ease';
-        rainContainer.style.opacity = '0';
-        setTimeout(() => {
-            rainContainer.style.display = 'none';
-        }, 800);
-    }, 5000);
+}
+
+function startStarRain() {
+    const container = document.getElementById('cross-rain');
+    const sparkles = ['✦', '✧', '+', '·'];
+
+    for (let i = 0; i < 60; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+        star.style.color = `rgba(255, 255, 200, ${0.6 + Math.random() * 0.4})`;
+        star.style.textShadow = `0 0 ${6 + Math.random() * 8}px rgba(255, 215, 0, ${0.5 + Math.random() * 0.5})`;
+
+        star.style.left = Math.random() * 100 + '%';
+        star.style.fontSize = (7 + Math.random() * 10) + 'px';
+        star.style.animationDuration = (8 + Math.random() * 6) + 's';
+        star.style.animationDelay = Math.random() * 10 + 's';
+
+        container.appendChild(star);
+    }
 }

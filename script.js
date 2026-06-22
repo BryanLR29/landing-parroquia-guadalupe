@@ -5,17 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
     if (!isMobile) {
-        body.addEventListener('mousemove', (e) => {
-            let xAxis = (window.innerWidth / 2 - e.pageX) / 20;
-            let yAxis = (window.innerHeight / 2 - e.pageY) / 20;
-            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-            card.style.transition = 'none';
-        });
-
-        body.addEventListener('mouseleave', () => {
-            card.style.transition = 'all 0.5s ease';
-            card.style.transform = 'rotateY(0deg) rotateX(0deg)';
-        });
+        const cardParent = card.parentNode;
+        const tiltWrapper = document.createElement('div');
+        tiltWrapper.className = 'card-tilt-wrapper';
+        cardParent.insertBefore(tiltWrapper, card);
+        tiltWrapper.appendChild(card);
     }
 });
 
@@ -25,47 +19,50 @@ window.addEventListener('load', () => {
 });
 
 function startCrossRain() {
-    const rainContainer = document.getElementById('cross-rain');
+    const container = document.getElementById('cross-rain');
 
-    for (let i = 0; i < 35; i++) {
-
+    function createCross(delay = 0) {
         const cross = document.createElement('div');
-
         cross.classList.add('cross');
         cross.textContent = '✝';
-
-        cross.style.left = Math.random() * 100 + '%';
-
-        cross.style.fontSize =
-            (15 + Math.random() * 20) + 'px';
-
-        cross.style.animationDuration =
-        (6 + Math.random() * 4) + 's';
-
-        cross.style.animationDelay =
-            Math.random() * 2 + 's';
-
-        rainContainer.appendChild(cross);
+        cross.style.left = (35 + Math.random() * 30) + '%';
+        cross.style.fontSize = (15 + Math.random() * 20) + 'px';
+        const duration = 8 + Math.random() * 6;
+        cross.style.animationDuration = duration + 's';
+        cross.style.animationDelay = delay + 's';
+        container.appendChild(cross);
+        setTimeout(() => cross.remove(), (duration + delay + 1) * 1000);
     }
 
+    for (let i = 0; i < 40; i++) {
+        setTimeout(() => createCross(0), i * 250);
+    }
+
+    setInterval(() => createCross(0), 800);
 }
 
 function startStarRain() {
     const container = document.getElementById('cross-rain');
     const sparkles = ['✦', '✧', '+', '·'];
 
-    for (let i = 0; i < 60; i++) {
+    function createStar(delay = 0) {
         const star = document.createElement('div');
         star.classList.add('star');
         star.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
-        star.style.color = `rgba(255, 255, 200, ${0.6 + Math.random() * 0.4})`;
-        star.style.textShadow = `0 0 ${6 + Math.random() * 8}px rgba(255, 215, 0, ${0.5 + Math.random() * 0.5})`;
-
-        star.style.left = Math.random() * 100 + '%';
-        star.style.fontSize = (7 + Math.random() * 10) + 'px';
-        star.style.animationDuration = (8 + Math.random() * 6) + 's';
-        star.style.animationDelay = Math.random() * 10 + 's';
-
+        star.style.color = `rgba(255, 255, 200, ${0.8 + Math.random() * 0.2})`;
+        star.style.textShadow = `0 0 ${10 + Math.random() * 12}px rgba(255, 215, 0, ${0.7 + Math.random() * 0.3})`;
+        star.style.left = (Math.random() < 0.7 ? 20 + Math.random() * 60 : Math.random() * 100) + '%';
+        star.style.fontSize = (12 + Math.random() * 20) + 'px';
+        const duration = 10 + Math.random() * 8;
+        star.style.animationDuration = duration + 's';
+        star.style.animationDelay = (delay + Math.random() * 2) + 's';
         container.appendChild(star);
+        setTimeout(() => star.remove(), (duration + delay + 3) * 1000);
     }
+
+    for (let i = 0; i < 35; i++) {
+        setTimeout(() => createStar(0), i * 250);
+    }
+
+    setInterval(() => createStar(0), 800);
 }
